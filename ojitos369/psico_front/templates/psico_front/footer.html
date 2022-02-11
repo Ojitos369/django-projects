@@ -1,0 +1,11 @@
+<footer id="footer" class="bg-dark footer mt-auto py-3">
+    <div class="container">
+        <div class="row">
+            {% for info in footer_data %}
+                <div class="col-12 col-md text-center p-1 p-md-3">
+                    <a href="{{ info.url }}"> {{ info.text }} </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</footer>

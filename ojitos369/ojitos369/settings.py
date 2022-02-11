@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'psico_front.apps.PsicoFrontConfig',
+    'psico_api.apps.PsicoApiConfig',
     
     'django.contrib.admin',
     'django.contrib.auth',

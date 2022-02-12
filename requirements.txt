@@ -3,3 +3,4 @@ django-bootstrap5
 djangorestframework
 markdown
 django-filter
+requests

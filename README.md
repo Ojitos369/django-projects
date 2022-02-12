@@ -25,3 +25,9 @@ Para probarlo:
     en `python manage.py shell`  
     ejecuta los scripts de `db_info/db_scripts.py`  
 
+- Arreglar rest framework swagger:  
+    en `./venv/lib64/python3.8/site-packages/rest_framework_swagger/templates/rest_framework_swagger/index.html`  
+    en la linea 2 cambia  
+    `{% load staticfiles %}`  
+    por  
+    `{% load static %}`  

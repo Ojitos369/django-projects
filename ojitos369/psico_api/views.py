@@ -12,13 +12,81 @@ from .serializers import *
 
 
 @api_view(['GET'])
-def index(request):
-    return Response({"message": "Hello, world!"})
+def get_test(request, test_id):
+    """
+    Get test
+    
+    Get a data from test
+
+    Args:
+    - path parameter:
+        - test_id: int (required)
+
+    Returns:
+        a json with the test data:
+            - test_id: int
+            - test_name: str
+            - test_description: str
+    
+    Raises:
+        - 400: if the test_id does not exist
+    """
+    
+    test = Test.objects.filter(pk=test_id)
+    if len(test) == 0:
+        return Response({"error": "Test not found"}, status=404)
+    serializer = TestSerializer(test[0], many=False)
+    return Response(serializer.data)
 
 @api_view(['GET'])
-def get_test(request, test_id):
-    test = Test.objects.get(pk=test_id)
-    serializer = TestSerializer(test, many=False)
+def get_questions(request, test_id):
+    """
+    Get Questions
+    Get a data from all questions of a test
+    
+    Args:
+    - path parameter:
+        - test_id: int (required)
+    
+    return:
+    a json list with the questions data:
+        - seccion: Seccion
+        - text: str
+        - tipo: tipo
+    
+    Raises:
+        - 400: if the test_id does not exist
+    """
+    
+    questions = Question.objects.filter(seccion__test__id=test_id)
+    if len(questions) == 0:
+        return Response({"error": "Test not found"}, status=404)
+    serializer = QuestionSerializer(questions, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_choices(request, seccion_id):
+    """
+    Get Choices
+    Get a data from all choices of a seccion
+    
+    Args:
+    - path parameter:
+        - seccion_id: int (required)
+    
+    return:
+    a json list with the choices data:
+        - question: Question
+        - text: str
+    
+    Raises:
+        - 400: if the question_id does not exist
+    """
+    
+    choices = Choice.objects.filter(question__seccion__id=seccion_id)
+    if len(choices) == 0:
+        return Response({"error": "Seccion not found"}, status=404)
+    serializer = ChoiceSerializer(choices, many=True)
     return Response(serializer.data)
 
 @api_view(['POST'])

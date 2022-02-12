@@ -15,6 +15,7 @@
 
 #cards .card {
     background: #0008;
+    height: 100%;
 }
 #cards .card-body,
 #cards .card-title,

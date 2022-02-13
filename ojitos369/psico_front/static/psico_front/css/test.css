@@ -1,4 +1,20 @@
 #main {
     width: 100%;
-    height: 75vh;
+}
+
+
+#cards {
+    position: relative;
+    width: 100%;
+}
+
+#cards .card {
+    background: #0008;
+    height: 100%;
+}
+#cards .card-body,
+#cards .card-title,
+#cards .card-text {
+    background: #0000;
+    color: #fff;
 }

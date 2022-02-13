@@ -13,7 +13,7 @@ class Test(models.Model):
     def __str__(self):
         return self.name
 
-class Seccion(models.Model):
+class Section(models.Model):
     test = models.ForeignKey(Test, on_delete=models.CASCADE)
     description = models.TextField(max_length = 200, blank = True, null = True)
     duration = models.IntegerField(default = 0)
@@ -21,7 +21,7 @@ class Seccion(models.Model):
     def __str__(self):
         return self.name
 class Question(models.Model):
-    seccion = models.ForeignKey(Seccion, on_delete=models.CASCADE)
+    section = models.ForeignKey(Section, on_delete=models.CASCADE)
     text = models.TextField(max_length=200)
     tipo = models.TextField(max_length = 200, blank = True, null = True)
     

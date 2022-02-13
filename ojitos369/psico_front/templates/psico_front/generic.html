@@ -1,5 +1,16 @@
 {% extends 'psico_front/base.html' %}
-
+{% load static %}
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'psico_front/css/base.css' %}">
+{% endblock styles %}
+{% block title %}
+{% if title %}
+    {{ title }}
+{% else %}
+    {{ block.super }}
+{% endif %}
+{% endblock title %}
 
 {% block body_data %}
 {{ block.super }}

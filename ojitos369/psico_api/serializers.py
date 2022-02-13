@@ -7,9 +7,9 @@ class TestSerializer(serializers.ModelSerializer):
         model = Test
         fields = '__all__'
 
-class SeccionSerializer(serializers.ModelSerializer):
+class SectionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Seccion
+        model = Section
         fields = '__all__'
 
 class QuestionSerializer(serializers.ModelSerializer):

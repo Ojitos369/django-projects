@@ -1,0 +1,25 @@
+{% extends 'psico_front/generic.html' %}
+{% load static %}
+{% block styles %}
+{{ block.super }}
+<style>
+    main {
+        width: 100%;
+        height: 79vh;
+    }
+</style>
+{% endblock styles %}
+{% block title %}
+Sitio en Construcción
+{% endblock %}
+
+{% block general %}
+<main class="container d-flex align-items-center">
+    <div class="row">
+        <h1 class="col col-md-6 offset-md-3">
+            Esta Pagina esta en construccion. Pronto estara disponible para ti 😁
+        </h1>
+    </div>
+</main>
+
+{% endblock general %}

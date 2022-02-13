@@ -2,11 +2,15 @@
 {% load static %}
 {% block styles %}
 {{ block.super }}
-<link rel="stylesheet" href="{% static 'psico_front/css/index.css' %}">
 <link rel="stylesheet" href="{% static 'psico_front/css/test.css' %}">
 {% endblock styles %}
 {% block general %}
-<main class="container" id="main">
+<main class="container mt-4 pt-4" id="main">
+    <div class="row">
+        <h1 class="col col-md-6 offset-md-3 text-center">
+            Test 1
+        </h1>
+    </div>
     <article class="row">
         <p class="col col-md-6 offset-md-3 text-center">
             Este Test consta de 10 secciones con tiempo limitado
@@ -18,12 +22,18 @@
             Aquellas preguntas que no se hayan constestado se tomaran como erroneas
         </p>
     </article>
-    <div class="row">
-        {% for i in range(10) %}
-        
-        {% endfor %}
-    </div>
-    
 </main>
+
+
+<section class="d-flex align-items-center justify-content-between" id="cards">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+            {% for section in sections %}
+                {% include 'psico_front/render_test_card.html' with data=section %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
 
 {% endblock general %}

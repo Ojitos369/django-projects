@@ -8,6 +8,7 @@ urlpatterns = [
     re_path(r'^$', schema_view),
     path('testing/', views.testing, name='testing'),
     path('get_test/<int:test_id>/', views.get_test, name='get_test'),
+    path('get_sections/<str:mode>/<int:filter_id>/', views.get_sections, name='get_sections'),
     path('get_questions/<str:mode>/<int:filter_id>/', views.get_questions, name='get_questions'),
-    path('get_choices/<int:seccion_id>/', views.get_choices, name='get_choices'),
+    path('get_choices/<str:mode>/<int:filter_id>/', views.get_choices, name='get_choices'),
 ]

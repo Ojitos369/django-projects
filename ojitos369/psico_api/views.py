@@ -20,6 +20,7 @@ def testing(request, param1, param2=None):
     }
     return Response(data)
 
+
 @api_view(['GET'])
 def get_test(request, test_id):
     """
@@ -46,6 +47,45 @@ def get_test(request, test_id):
         return Response({"error": "Test not found"}, status=404)
     serializer = TestSerializer(test[0], many=False)
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+def get_sections(request, mode, filter_id):
+    """
+    Get Sections
+    Get a data from sections depending on the mode and filter_id
+    
+    Args:
+    - path parameter:
+        - mode: str (required)
+            - Options:
+                - test
+                - seccion
+                -all
+        - filter_id: int (required)
+    
+    return:
+    a json list with the sections data:
+        - test: Test
+        - text: str
+        - tipo: tipo
+    
+    Raises:
+        - 400: if the mode or filter_id does not exist
+    """
+    if mode == 'test':
+        sections = Seccion.objects.filter(test__id=filter_id)
+    elif mode == 'seccion':
+        sections = Seccion.objects.filter(pk=filter_id)
+    elif mode == 'all':
+        sections = Seccion.objects.all()
+    else:
+        return Response({"error": "Mode not found"}, status=404)
+    if len(sections) == 0:
+        return Response({"error": "Id not found in this mode"}, status=404)
+    serializer = SeccionSerializer(sections, many=True)
+    return Response(serializer.data)
+
 
 @api_view(['GET'])
 def get_questions(request, mode, filter_id):
@@ -77,15 +117,16 @@ def get_questions(request, mode, filter_id):
     elif mode == 'seccion':
         questions = Question.objects.filter(seccion__id=filter_id)
     elif mode == 'question':
-        questions = Question.objects.filter(id=filter_id)
+        questions = Question.objects.filter(pk=filter_id)
     elif mode == 'all':
         questions = Question.objects.all()
     else:
         return Response({"error": "Mode not found"}, status=404)
     if len(questions) == 0:
-        return Response({"error": "id not found in this mode"}, status=404)
+        return Response({"error": "Id not found in this mode"}, status=404)
     serializer = QuestionSerializer(questions, many=True)
     return Response(serializer.data)
+
 
 @api_view(['GET'])
 def get_choices(request, mode, filter_id):
@@ -120,13 +161,13 @@ def get_choices(request, mode, filter_id):
     elif mode == 'question':
         choices = Choice.objects.filter(question__id=filter_id)
     elif mode == 'choice':
-        choices = Choice.objects.filter(id=filter_id)
+        choices = Choice.objects.filter(pk=filter_id)
     elif mode == 'all':
         choices = Choice.objects.all()
     else:
         return Response({"error": "Mode not found"}, status=404)
     if len(choices) == 0:
-        return Response({"error": "id not found in this mode"}, status=404)
+        return Response({"error": "Id not found in this mode"}, status=404)
     serializer = ChoiceSerializer(choices, many=True)
     return Response(serializer.data)
 

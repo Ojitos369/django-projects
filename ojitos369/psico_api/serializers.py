@@ -6,7 +6,12 @@ class TestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Test
         fields = '__all__'
-        
+
+class SeccionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Seccion
+        fields = '__all__'
+
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question

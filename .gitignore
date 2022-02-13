@@ -3,3 +3,6 @@ venv/
 *__pycache__/
 */mysecret.py
 ojitos369/ojitos369/mysecret.py
+ojitos369/.gitignore
+ojitos369/.git/
+ojitos369/requirements.txt

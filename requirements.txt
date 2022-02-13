@@ -5,3 +5,7 @@ markdown
 django-filter
 django-rest-swagger
 requests
+
+setuptools
+pymysql
+mysql-client

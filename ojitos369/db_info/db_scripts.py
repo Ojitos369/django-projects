@@ -1,11 +1,14 @@
 import json
 from random import choices
 import re
+from os import path
 
 from soupsieve import match
 from psico_api.models import *
-# from db_scripts import *
+# from db_info.db_scripts import *
 
+
+current_path = path.dirname(path.abspath(__file__))
 def make_test():
     t1 = Test(name = 'Test 1', description = 'Test 1 description')
     t2 = Test(name = 'Test 2', description = 'Test 2 description')
@@ -28,7 +31,7 @@ def test_info():
 
     
 def make_seccions():
-    with open('secciones.txt', 'r') as f:
+    with open(f'{current_path}/secciones.txt', 'r') as f:
         sections = f.readlines()
         
     expresion = "^(\d), (.*), (\d+)$"
@@ -53,7 +56,7 @@ def seccion_info():
         print()
         
 def make_questions():
-    with open('preguntas.txt', 'r') as f:
+    with open(f'{current_path}/preguntas.txt', 'r') as f:
         questions = f.readlines()
     
     expresion = "^(\d+), '(.*)', '(.*)'$"
@@ -79,7 +82,7 @@ def question_info():
         print()
         
 def make_choices():
-    with open('respuestas.txt', 'r') as f:
+    with open(f'{current_path}/respuestas.txt', 'r') as f:
         choices = f.readlines()
     
     expresion = "^(\d+), '(.*)'$"
@@ -103,4 +106,7 @@ def choice_info():
 
 
 def main():
-    test_info()
+    make_test()
+    make_seccions()
+    make_questions()
+    make_choices()

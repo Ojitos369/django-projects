@@ -1,19 +1,29 @@
-{% extends 'psico_front/base.html' %}
+{% extends 'psico_front/generic.html' %}
 {% load static %}
-
 {% block styles %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'psico_front/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'psico_front/css/test.css' %}">
 {% endblock styles %}
+{% block general %}
+<main class="container" id="main">
+    <article class="row">
+        <p class="col col-md-6 offset-md-3 text-center">
+            Este Test consta de 10 secciones con tiempo limitado
+            <br>
+            Cada seccion cuenta con un tiempo propio que se da a conoce cuando inicie
+            <br>
+            Para evaluar debe haber constetado las 10 secciones
+            <br>
+            Aquellas preguntas que no se hayan constestado se tomaran como erroneas
+        </p>
+    </article>
+    <div class="row">
+        {% for i in range(10) %}
+        
+        {% endfor %}
+    </div>
+    
+</main>
 
-
-{% block body_data %}
-{{ block.super }}
-class = "bg-warning"
-{% endblock body_data %}
-
-
-{% block content %}
-{% include 'psico_front/navbar.html' %}
-{% include 'psico_front/footer.html' %}
-{% endblock content %}
+{% endblock general %}

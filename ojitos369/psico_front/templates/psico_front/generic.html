@@ -1,0 +1,14 @@
+{% extends 'psico_front/base.html' %}
+
+
+{% block body_data %}
+{{ block.super }}
+class = "bg-warning"
+{% endblock body_data %}
+
+
+{% block content %}
+{% include 'psico_front/navbar.html' %}
+{% block general %}{% endblock general %}
+{% include 'psico_front/footer.html' %}
+{% endblock content %}

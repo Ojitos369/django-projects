@@ -1,21 +1,14 @@
-{% extends 'psico_front/base.html' %}
+{% extends 'psico_front/generic.html' %}
 {% load static %}
 
 {% block styles %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'psico_front/css/index.css' %}">
-<script src="{% static 'psico_front/js/index.js' %}"></script>
 {% endblock styles %}
+{% block scripts %}
+<script src="{% static 'psico_front/js/index.js' %}"></script>
+{% endblock scripts %}
 
-
-{% block body_data %}
-{{ block.super }}
-class = "bg-warning"
-{% endblock body_data %}
-
-
-{% block content %}
-{% include 'psico_front/navbar.html' %}
+{% block general %}
 {% include 'psico_front/test_zone.html' %}
-{% include 'psico_front/footer.html' %}
-{% endblock content %}
+{% endblock general %}

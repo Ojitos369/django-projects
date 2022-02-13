@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,9 +25,9 @@ from .mysecret import SECRET_KEY, my_database # Create your own secret_config.py
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-#ALLOWED_HOSTS = []
 #DEBUG = False
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['ojitos369.pythonanywhere.com', '*']
+#ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
 ]
 
 ROOT_URLCONF = 'ojitos369.urls'
@@ -135,6 +137,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

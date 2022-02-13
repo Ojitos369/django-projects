@@ -24,8 +24,9 @@ from .mysecret import SECRET_KEY, my_database # Create your own secret_config.py
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
+#DEBUG = False
+#ALLOWED_HOSTS = ['localhost']
 
 # Application definition
 

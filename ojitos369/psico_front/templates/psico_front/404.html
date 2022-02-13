@@ -4,7 +4,6 @@
 {% block styles %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'psico_front/css/index.css' %}">
-<script src="{% static 'psico_front/js/index.js' %}"></script>
 {% endblock styles %}
 
 
@@ -16,6 +15,6 @@ class = "bg-warning"
 
 {% block content %}
 {% include 'psico_front/navbar.html' %}
-{% include 'psico_front/test_zone.html' %}
+<h1>Error 404 Page Not found</h1>
 {% include 'psico_front/footer.html' %}
 {% endblock content %}

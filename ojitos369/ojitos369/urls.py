@@ -21,3 +21,6 @@ urlpatterns = [
     path('psico/', include('psico_front.urls')),
     path('psico_api/', include('psico_api.urls')),
 ]
+
+
+handler404 = 'psico_front.views.handler404'

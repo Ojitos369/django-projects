@@ -7,6 +7,9 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.urls import include
 # User
 
+def handler404(request, exception):
+    return render(request, 'psico_front/404.html')
+
 def index(request):
     domain = request.build_absolute_uri('/')[:-1]
     tests = []
@@ -30,5 +33,7 @@ def index(request):
     return render(request, 'psico_front/index.html', context)
 
 def test(request, test_id):
+    if test_id > 3:
+        raise Http404
     domain = request.build_absolute_uri('/')[:-1]
     return render(request, f'psico_front/test{test_id}.html')

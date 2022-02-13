@@ -9,3 +9,4 @@ requests
 setuptools
 pymysql
 mysql-client
+whitenoise

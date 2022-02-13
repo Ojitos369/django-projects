@@ -6,7 +6,8 @@ schema_view = get_swagger_view(title='Pastebin API')
 app_name = 'psico_api'
 urlpatterns = [
     re_path(r'^$', schema_view),
+    path('testing/', views.testing, name='testing'),
     path('get_test/<int:test_id>/', views.get_test, name='get_test'),
-    path('get_questions/<int:test_id>/', views.get_questions, name='get_questions'),
+    path('get_questions/<str:mode>/<int:filter_id>/', views.get_questions, name='get_questions'),
     path('get_choices/<int:seccion_id>/', views.get_choices, name='get_choices'),
 ]

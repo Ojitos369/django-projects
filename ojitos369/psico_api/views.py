@@ -12,6 +12,15 @@ from .serializers import *
 
 
 @api_view(['GET'])
+def testing(request, param1, param2=None):
+    """"""
+    data = {
+        'param1': param1,
+        'param2': param2
+    }
+    return Response(data)
+
+@api_view(['GET'])
 def get_test(request, test_id):
     """
     Get test
@@ -39,14 +48,20 @@ def get_test(request, test_id):
     return Response(serializer.data)
 
 @api_view(['GET'])
-def get_questions(request, test_id):
+def get_questions(request, mode, filter_id):
     """
     Get Questions
-    Get a data from all questions of a test
+    Get a data from questions depending on the mode and filter_id
     
     Args:
     - path parameter:
-        - test_id: int (required)
+        - mode: str (required)
+            - Options:
+                - test
+                - seccion
+                - question
+                - all
+        - filter_id: int (required)
     
     return:
     a json list with the questions data:
@@ -55,24 +70,39 @@ def get_questions(request, test_id):
         - tipo: tipo
     
     Raises:
-        - 400: if the test_id does not exist
+        - 400: if the mode or filter_id does not exist
     """
-    
-    questions = Question.objects.filter(seccion__test__id=test_id)
+    if mode == 'test':
+        questions = Question.objects.filter(seccion__test__id=filter_id)
+    elif mode == 'seccion':
+        questions = Question.objects.filter(seccion__id=filter_id)
+    elif mode == 'question':
+        questions = Question.objects.filter(id=filter_id)
+    elif mode == 'all':
+        questions = Question.objects.all()
+    else:
+        return Response({"error": "Mode not found"}, status=404)
     if len(questions) == 0:
-        return Response({"error": "Test not found"}, status=404)
+        return Response({"error": "id not found in this mode"}, status=404)
     serializer = QuestionSerializer(questions, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
-def get_choices(request, seccion_id):
+def get_choices(request, mode, filter_id):
     """
     Get Choices
-    Get a data from all choices of a seccion
+    Get a data from choices depending on the mode and filter_id
     
     Args:
     - path parameter:
-        - seccion_id: int (required)
+        - mode: str (required)
+            - Options:
+                - test
+                - seccion
+                - question
+                - choice
+                - all
+        - filter_id: int (required)
     
     return:
     a json list with the choices data:
@@ -80,12 +110,23 @@ def get_choices(request, seccion_id):
         - text: str
     
     Raises:
-        - 400: if the question_id does not exist
+        - 400: if the mode or filter_id does not exist
     """
     
-    choices = Choice.objects.filter(question__seccion__id=seccion_id)
+    if mode == 'test':
+        choices = Choice.objects.filter(question__seccion__test__id=filter_id)
+    elif mode == 'seccion':
+        choices = Choice.objects.filter(question__seccion__id=filter_id)
+    elif mode == 'question':
+        choices = Choice.objects.filter(question__id=filter_id)
+    elif mode == 'choice':
+        choices = Choice.objects.filter(id=filter_id)
+    elif mode == 'all':
+        choices = Choice.objects.all()
+    else:
+        return Response({"error": "Mode not found"}, status=404)
     if len(choices) == 0:
-        return Response({"error": "Seccion not found"}, status=404)
+        return Response({"error": "id not found in this mode"}, status=404)
     serializer = ChoiceSerializer(choices, many=True)
     return Response(serializer.data)
 

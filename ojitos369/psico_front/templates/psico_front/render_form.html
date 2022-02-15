@@ -1,0 +1,6 @@
+<form action="", method="post">
+    {% for question in questions %}
+        {% include 'psico_front/render_question.html' with question=question question_id=question.id choices=choices %}
+    {% endfor %}
+    <input type="submit" value="Submit" />
+</form>

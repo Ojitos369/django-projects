@@ -1,0 +1,12 @@
+<p>{{ question.text }}</p>
+{% if question.tipo == 'selección unica' %}
+    {% for choice in question.choices %}
+        <input type="radio" name="{{ question.id }}" value="{{ choice.id }}" id="{{ question.id }}{{ choice.id }}">
+        <label for="{{ question.id }}{{ choice.id }}">{{ choice.text }}</label>
+        <br>
+    {% endfor %}
+{% else %}
+<p> {{ question.tipo }} </p>
+{% endif %}
+
+<br><br>

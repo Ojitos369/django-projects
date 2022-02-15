@@ -1,0 +1,14 @@
+{% extends 'psico_front/generic.html' %}
+{% load static %}
+
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'psico_front/css/index.css' %}">
+{% endblock styles %}
+{% block scripts %}
+<script src="{% static 'psico_front/js/index.js' %}"></script>
+{% endblock scripts %}
+
+{% block general %}
+{% include 'psico_front/render_form.html' %}
+{% endblock general %}

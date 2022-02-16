@@ -9,6 +9,12 @@ Proyectos incluidos actualmente:
 - [Psicometrica](https://github.com/Ojitos369/psicometria) - (Construyendo...)  
   
 
+## Capturas
+![apis](./img/apis.png)
+![main](./img/index.png)
+![test 1](./img/test_1.png)
+![test 1 2](./img/test_1_2.png)
+![preguntas](./img/preguntas.png)
 
 Para probarlo:  
 - Instalar las dependencias:  

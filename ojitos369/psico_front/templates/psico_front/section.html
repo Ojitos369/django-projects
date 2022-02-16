@@ -4,11 +4,16 @@
 {% block styles %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'psico_front/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'psico_front/css/section.css' %}">
 {% endblock styles %}
 {% block scripts %}
-<script src="{% static 'psico_front/js/index.js' %}"></script>
+{{ block.super }}
+<script src="{% static 'psico_front/scripts/section.js' %}"></script>
 {% endblock scripts %}
 
 {% block general %}
+<div class="select_alert" id="select_alert">
+    Solo Puedes elegir 2 opciones
+</div>
 {% include 'psico_front/render_form.html' %}
 {% endblock general %}

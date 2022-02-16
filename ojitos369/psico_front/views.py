@@ -17,6 +17,9 @@ myrequest = MyRequest('http://localhost:8000/')
 def handler404(request, exception):
     return render(request, 'psico_front/404.html')
 
+def login(request):
+    return render(request, 'psico_front/construction.html')
+
 def index(request):
     tests = []
     for i in range(3):
@@ -48,7 +51,10 @@ def test(request, test_id):
         'title': f'Test {test_id}',
         'sections': sections,
     }
-    return render(request, f'psico_front/test{test_id}.html', context)
+    if test_id == 1:
+        return render(request, f'psico_front/test{test_id}.html', context)
+    else:
+        return render(request, f'psico_front/construction.html')
 
 def section(request, section_id):
     questions = myrequest.get_questions(section_id, 'section')

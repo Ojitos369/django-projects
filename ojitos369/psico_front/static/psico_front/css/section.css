@@ -1,0 +1,18 @@
+#select_alert {
+    position: fixed;
+    background: #f00 !important;
+    color: #fff;
+    font-weight: bolder;
+    font-size: 2em;
+    border-radius: 15px;
+    left: 30%;
+    padding: 10px;
+}
+
+.select_alert {
+    display: none;
+}
+
+.select_alert_2 {
+    display: block;
+}

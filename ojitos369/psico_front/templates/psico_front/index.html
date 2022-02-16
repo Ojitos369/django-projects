@@ -6,7 +6,8 @@
 <link rel="stylesheet" href="{% static 'psico_front/css/index.css' %}">
 {% endblock styles %}
 {% block scripts %}
-<script src="{% static 'psico_front/js/index.js' %}"></script>
+{{ block.super }}
+<script src="{% static 'psico_front/scripts/index.js' %}"></script>
 {% endblock scripts %}
 
 {% block general %}

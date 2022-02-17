@@ -1,5 +1,7 @@
 # Python
 import json
+from multiprocessing import context
+from unittest import result
 # Django
 from django.shortcuts import render
 from django.forms.models import model_to_dict
@@ -10,6 +12,7 @@ from rest_framework.decorators import api_view
 # User
 from .models import *
 from .serializers import *
+from .sections_evals.test_eval import check_test
 
 
 @api_view(['GET'])
@@ -174,7 +177,17 @@ def get_choices(request, mode, filter_id):
 
 
 @api_view(['POST'])
-def test_1(request):
+def check_section(request, section_id):
     """
     """
-    return render(request, f'psico_front/temp.html')
+    
+    if section_id > 3:
+        return render(request, f'psico_front/construction.html')
+    
+    result = check_test.check_section(request.data, section_id)
+    context = {
+        'title': f'Resultados Section {section_id}',
+        'result': result
+    }
+    
+    return render(request, f'psico_front/check_section.html', context)

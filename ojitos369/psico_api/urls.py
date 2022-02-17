@@ -11,4 +11,5 @@ urlpatterns = [
     path('get_sections/<str:mode>/<int:filter_id>/', views.get_sections, name='get_sections'),
     path('get_questions/<str:mode>/<int:filter_id>/', views.get_questions, name='get_questions'),
     path('get_choices/<str:mode>/<int:filter_id>/', views.get_choices, name='get_choices'),
+    path('check_section/<int:section_id>', views.check_section, name='check_section'),
 ]

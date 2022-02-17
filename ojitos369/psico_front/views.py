@@ -77,6 +77,7 @@ def section(request, section_id):
         'questions': questions,
         'choices': choices,
         'section_id': section_id,
+        'action': 'http://localhost:8000/psico_api/check_section/'
     }
     
     return render(request, f'psico_front/section.html', context)

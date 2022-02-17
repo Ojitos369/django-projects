@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+# from django.conf import settings
+# from django.conf.urls import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('psico/', include('psico_front.urls')),
     path('psico_api/', include('psico_api.urls')),
-]
+] # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+handler404 = 'psico_front.views.handler404'

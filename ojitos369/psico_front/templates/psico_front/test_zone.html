@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
             {% for test in tests %}
-                {% include 'psico_front/render_test_card.html' with test=test %}
+                {% include 'psico_front/render_test_card.html' with data=test %}
             {% endfor %}
         </div>
     </div>

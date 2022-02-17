@@ -1,7 +1,11 @@
+#main {
+    width: 100%;
+}
+
+
 #cards {
     position: relative;
     width: 100%;
-    height: 85vh;
 }
 
 #cards .card {

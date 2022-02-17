@@ -24,14 +24,14 @@ def test_info():
     for test in t:
         print()
         print(f'{test.pk}.- {test.name}')
-        sections = test.seccion_set.all()
+        sections = test.section_set.all()
         for s in sections:
             print(f'{s.pk}.- {s.description} - {s.duration} ({s.test.pk})')
         print()
 
     
-def make_seccions():
-    with open(f'{current_path}/secciones.txt', 'r') as f:
+def make_sections():
+    with open(f'{current_path}/sectiones.txt', 'r') as f:
         sections = f.readlines()
         
     expresion = "^(\d), (.*), (\d+)$"
@@ -41,18 +41,18 @@ def make_seccions():
             test_id = int(match_obj.group(1))
             description = str(match_obj.group(2))
             duration = int(match_obj.group(3))
-            seccion = Seccion(test_id = test_id, description = description, duration = duration)
-            seccion.save()
+            section = Section(test_id = test_id, description = description, duration = duration)
+            section.save()
 
-def seccion_info():
-    seccions = Seccion.objects.all()
+def section_info():
+    sections = Section.objects.all()
     
-    for s in seccions:
+    for s in sections:
         print()
         print(f'{s.pk}.- {s.description} - {s.duration} ({s.test.pk})')
         questions = s.question_set.all()
         for q in questions:
-            print(f'{q.pk}.- {q.text} - {q.tipo} ({q.seccion.test.pk} > {q.seccion.pk})')
+            print(f'{q.pk}.- {q.text} - {q.tipo} ({q.section.test.pk} > {q.section.pk})')
         print()
         
 def make_questions():
@@ -63,10 +63,10 @@ def make_questions():
     for q in questions:
         match_obj = re.match(expresion, q)
         if match_obj:
-            seccion_id = int(match_obj.group(1))
+            section_id = int(match_obj.group(1))
             text = str(match_obj.group(2))
             tipo = str(match_obj.group(3))
-            question = Question(seccion_id = seccion_id, text = text, tipo = tipo)
+            question = Question(section_id = section_id, text = text, tipo = tipo)
             question.save()
 
 def question_info():
@@ -74,11 +74,11 @@ def question_info():
     
     for q in questions:
         print()
-        print(f'{q.pk}.- {q.text} ({q.seccion.test.pk} > {q.seccion.pk})')
+        print(f'{q.pk}.- {q.text} ({q.section.test.pk} > {q.section.pk})')
         
         choices = q.choice_set.all()
         for c in choices:
-            print(f'{c.pk}.- {c.text} ({q.seccion.test.pk} > {q.seccion.pk} > {q.pk})')
+            print(f'{c.pk}.- {c.text} ({q.section.test.pk} > {q.section.pk} > {q.pk})')
         print()
         
 def make_choices():
@@ -102,11 +102,11 @@ def make_choices():
 def choice_info():
     choices = Choice.objects.all()
     for c in choices:
-        print(f'{c.pk}.- {c.text} ({c.question.seccion.test.pk} > {c.question.seccion.pk} > {c.question.pk})')
+        print(f'{c.pk}.- {c.text} ({c.question.section.test.pk} > {c.question.section.pk} > {c.question.pk})')
 
 
 def main():
     make_test()
-    make_seccions()
+    make_sections()
     make_questions()
     make_choices()

@@ -1,0 +1,47 @@
+{% if question.tipo == 'iguales opuestos' or question.tipo == 'iguales opuestos' or question.text == 'seleccionar diferente' %}
+{% else %}
+    <p>{{ question.text }}</p>
+{% endif %}
+
+{% if question.tipo == 'selección unica' %}
+    {% for choice in question.choices %}
+        <input type="radio" name="input_{{ question.id }}" value="{{ choice.id }}" id="input_{{ question.id }}{{ choice.id }}">
+        <label for="input_{{ question.id }}{{ choice.id }}">{{ choice.text }}</label>
+        <br>
+    {% endfor %}
+{% elif question.tipo == 'opcion doble' %}
+    {% for choice in question.choices %}
+        <input type="radio" name="input_{{ question.id }}" value="{{ choice.id }}" id="input_{{ question.id }}{{ choice.id }}">
+        <label for="input_{{ question.id }}{{ choice.id }}">{{ choice.text }}</label>
+        <br>
+    {% endfor %}
+{% elif question.tipo == 'selección doble' %}
+    {% for choice in question.choices %}
+        <input type="checkbox" name="input_{{ question.id }}" value="{{ choice.id }}" id="input{{ question.id }}{{ choice.id }}" onclick="check_selected('input_{{ question.id }}', 2)">
+        <label for="input{{ question.id }}{{ choice.id }}">{{ choice.text }}</label>
+        <br>
+    {% endfor %}
+{% elif question.tipo == 'iguales opuestos' %}
+    <p> {{ question.choices.0.text }} - {{ question.choices.1.text }} </p>
+    <input type="radio" name="input_{{ question.id }}" value="Iguales" id="input{{ question.id }}1">
+    <label for="input{{ question.id }}1">Iguales</label>
+    <input type="radio" name="input_{{ question.id }}" value="Opuestos" id="input{{ question.id }}2">
+    <label for="input{{ question.id }}2">Opuestos</label>
+    <br>
+{% elif question.tipo == 'respuesta numerica' %}
+    {% for choice in question.choices %}
+        <input type="number" name="input_{{ question.id }}" id="input{{ question.id }}{{ choice.id }}">
+        <label for="input{{ question.id }}{{ choice.id }}">{{ choice.text }}</label>
+        <br>
+{% endfor %}
+{% elif question.tipo == 'dos respuestas numericas' %}
+    {% for choice in question.choices %}
+        <input type="number" name="input_{{ question.id }}" id="input{{ question.id }}{{ choice.id }}">
+        <label for="input{{ question.id }}{{ choice.id }}">{{ choice.text }}</label>
+        <br>
+    {% endfor %}
+{% else %}
+<p> {{ question.tipo }} </p>
+{% endif %}
+
+<br><br>

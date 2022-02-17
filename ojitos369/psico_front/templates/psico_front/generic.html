@@ -1,0 +1,25 @@
+{% extends 'psico_front/base.html' %}
+{% load static %}
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'psico_front/css/base.css' %}">
+{% endblock styles %}
+{% block title %}
+{% if title %}
+    {{ title }}
+{% else %}
+    {{ block.super }}
+{% endif %}
+{% endblock title %}
+
+{% block body_data %}
+{{ block.super }}
+class = "bg-warning"
+{% endblock body_data %}
+
+
+{% block content %}
+{% include 'psico_front/navbar.html' %}
+{% block general %}{% endblock general %}
+{% include 'psico_front/footer.html' %}
+{% endblock content %}

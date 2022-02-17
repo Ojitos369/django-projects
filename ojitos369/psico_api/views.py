@@ -1,6 +1,9 @@
 # Python
 import json
+from multiprocessing import context
+from unittest import result
 # Django
+from django.shortcuts import render
 from django.forms.models import model_to_dict
 
 # Rest Framework
@@ -9,6 +12,7 @@ from rest_framework.decorators import api_view
 # User
 from .models import *
 from .serializers import *
+from .sections_evals.test_eval import check_test
 
 
 @api_view(['GET'])
@@ -171,10 +175,19 @@ def get_choices(request, mode, filter_id):
     serializer = ChoiceSerializer(choices, many=True)
     return Response(serializer.data)
 
+
 @api_view(['POST'])
-def create_test(request):
-    serializer = TestSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data)
-    return Response(serializer.errors)
+def check_section(request, section_id):
+    """
+    """
+    
+    if section_id > 3:
+        return render(request, f'psico_front/construction.html')
+    
+    result = check_test.check_section(request.data, section_id)
+    context = {
+        'title': f'Resultados Section {section_id}',
+        'result': result
+    }
+    
+    return render(request, f'psico_front/check_section.html', context)

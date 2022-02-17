@@ -15,6 +15,7 @@ Proyectos incluidos actualmente:
 ![test 1](./img/test_1.png)
 ![test 1 2](./img/test_1_2.png)
 ![preguntas](./img/preguntas.png)
+![section results 1](./img/section_results_1.png)
 
 Para probarlo:  
 - Instalar las dependencias:  

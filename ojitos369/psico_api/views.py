@@ -1,6 +1,7 @@
 # Python
 import json
 # Django
+from django.shortcuts import render
 from django.forms.models import model_to_dict
 
 # Rest Framework
@@ -171,10 +172,9 @@ def get_choices(request, mode, filter_id):
     serializer = ChoiceSerializer(choices, many=True)
     return Response(serializer.data)
 
+
 @api_view(['POST'])
-def create_test(request):
-    serializer = TestSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data)
-    return Response(serializer.errors)
+def test_1(request):
+    """
+    """
+    return render(request, f'psico_front/temp.html')

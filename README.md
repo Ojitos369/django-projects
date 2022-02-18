@@ -26,9 +26,16 @@ Para probarlo:
     ```
     ojitos369/ojitos369/mysecret.py
     ```
-    y agrega la variable SECRET_KEY  
+    y agrega la variable SECRET_KEY 
+    y la variable my_database con los datos de conexion a la base de datos.  
 
-- Para agregar los datos a la db:  
+- Haz las migraciones:(Ya vienen incluidas)(Ejecutar en caso de usar otra base de datos)  
+    ```
+    python manage.py makemigrations psico_api
+    python manage.py migrate
+    ```
+
+- Para agregar los datos a la db:(Ya vienen precargadas en sqlite3)(Ejecutar en caso de usar otra base de datos)  
     en `python manage.py shell`  
     ejecuta los scripts de `db_info/db_scripts.py`  
 
@@ -38,3 +45,5 @@ Para probarlo:
     `{% load staticfiles %}`  
     por  
     `{% load static %}`  
+
+**Direccion root '/' no esta agregada, ingresar a /psico**

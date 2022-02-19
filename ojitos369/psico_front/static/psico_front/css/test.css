@@ -9,6 +9,7 @@
 }
 
 #cards .card {
+    border-radius: 20px;
     background: #0008;
     height: 100%;
 }

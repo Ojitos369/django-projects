@@ -1,6 +1,10 @@
 .my-btn {
-    background: #0f0;
-    color: #000;
+    border-radius: 20px;
+    background: #7C09B3;
+    color: #fff;
+    -webkit-box-shadow: 2px 2px 15px 0px #fff;
+    -moz-box-shadow: 2px 2px 15px 0px #fff;
+    box-shadow: 2px 2px 15px 0px #fff;
 }
 .my-btn:hover {
     animation: reflejo .5s;

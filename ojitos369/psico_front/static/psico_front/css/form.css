@@ -33,8 +33,10 @@ form .label-number{
 
 
 form .my-label {
-    background-color: #000;
+    background-color: #BF8000;
     color: #fff;
+    font-weight: bolder;
+    /* FFA900 */
 }
 
 form .text-blod{

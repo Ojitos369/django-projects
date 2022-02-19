@@ -1,7 +1,12 @@
-<form action="{{ action }}{{ section_id }}", method="post">
+<form action="{{ action }}{{ section_id }}" method="post" class="container justify-content-center">
     {% csrf_token %}
     {% for question in questions %}
-        {% include 'psico_front/render_question.html' with question=question question_id=question.id choices=choices %}
+        <div class="row d-flex justify-content-center question-element">
+            {% include 'psico_front/render_question.html' with question=question question_id=question.id choices=choices %}
+        </div>
+        <hr>
     {% endfor %}
-    <input type="submit" value="Submit" />
+    <div class="row">
+        <input type="submit" value="Submit" class="btn col-12 my-btn mb-5"/>
+    </div>
 </form>

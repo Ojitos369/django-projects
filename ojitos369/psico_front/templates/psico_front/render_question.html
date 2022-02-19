@@ -1,43 +1,61 @@
 {% if question.tipo == 'iguales opuestos' or question.tipo == 'iguales opuestos' or question.text == 'seleccionar diferente' %}
 {% else %}
-    <p>{{ question.text }}</p>
+<div class="col-12 text-center">
+    <p class="h5 text-blod">{{ question.text }}</p>
+</div>
 {% endif %}
 
 {% if question.tipo == 'selección unica' %}
     {% for choice in question.choices %}
-        <input type="radio" name="input_{{ question.id }}" value="{{ choice.id }}" id="input_{{ question.id }}{{ choice.id }}">
-        <label for="input_{{ question.id }}{{ choice.id }}">{{ choice.text }}</label>
+        <label class="col-12 col-md d-flex align-items-center justify-content-center" for="input_{{ question.id }}{{ choice.id }}" id="label_{{ question.id }}{{ choice.id }}" onclick="check_label('input_{{ question.id }}')">
+            <input type="radio" name="input_{{ question.id }}" value="{{ choice.id }}" id="input_{{ question.id }}{{ choice.id }}">
+            {{ choice.text }}
+        </label>
         <br>
     {% endfor %}
 {% elif question.tipo == 'opcion doble' %}
     {% for choice in question.choices %}
-        <input type="radio" name="input_{{ question.id }}" value="{{ choice.id }}" id="input_{{ question.id }}{{ choice.id }}">
-        <label for="input_{{ question.id }}{{ choice.id }}">{{ choice.text }}</label>
+        <label class="col-12 col-md d-flex align-items-center justify-content-center" for="input_{{ question.id }}{{ choice.id }}" id="label_{{ question.id }}{{ choice.id }}" onclick="check_label('input_{{ question.id }}')">
+            <input type="radio" name="input_{{ question.id }}" value="{{ choice.id }}" id="input_{{ question.id }}{{ choice.id }}">
+            {{ choice.text }}
+        </label>
         <br>
     {% endfor %}
 {% elif question.tipo == 'selección doble' %}
     {% for choice in question.choices %}
-        <input type="checkbox" name="input_{{ question.id }}" value="{{ choice.id }}" id="input{{ question.id }}{{ choice.id }}" onclick="check_selected('input_{{ question.id }}', 2)">
-        <label for="input{{ question.id }}{{ choice.id }}">{{ choice.text }}</label>
+        <label class="col-12 col-md d-flex align-items-center justify-content-center" for="input_{{ question.id }}{{ choice.id }}" id="label_{{ question.id }}{{ choice.id }}" onclick="check_label('input_{{ question.id }}')">
+            <input type="checkbox" name="input_{{ question.id }}" value="{{ choice.id }}" id="input_{{ question.id }}{{ choice.id }}" onclick="check_selected('input_{{ question.id }}', 2)">
+            {{ choice.text }}
+        </label>
         <br>
     {% endfor %}
 {% elif question.tipo == 'iguales opuestos' %}
-    <p> {{ question.choices.0.text }} - {{ question.choices.1.text }} </p>
-    <input type="radio" name="input_{{ question.id }}" value="Iguales" id="input{{ question.id }}1">
-    <label for="input{{ question.id }}1">Iguales</label>
-    <input type="radio" name="input_{{ question.id }}" value="Opuestos" id="input{{ question.id }}2">
-    <label for="input{{ question.id }}2">Opuestos</label>
+    <div class="col-12 text-center">
+        <p class="h5 text-blod"> {{ question.choices.0.text }} - {{ question.choices.1.text }} </p>
+    </div>
+    <label class="col-12 col-md d-flex align-items-center justify-content-center" for="input_{{ question.id }}1" id="label_{{ question.id }}1" onclick="check_label('input_{{ question.id }}')">
+        <input type="radio" name="input_{{ question.id }}" value="Iguales" id="input_{{ question.id }}1">
+        Iguales
+    </label>
+    <label class="col-12 col-md d-flex align-items-center justify-content-center" for="input_{{ question.id }}2" id="label_{{ question.id }}2" onclick="check_label('input_{{ question.id }}')">
+        <input type="radio" name="input_{{ question.id }}" value="Opuestos" id="input_{{ question.id }}2">
+        Opuestos
+    </label>
     <br>
 {% elif question.tipo == 'respuesta numerica' %}
     {% for choice in question.choices %}
-        <input type="number" name="input_{{ question.id }}" id="input{{ question.id }}{{ choice.id }}">
-        <label for="input{{ question.id }}{{ choice.id }}">{{ choice.text }}</label>
+        <label class="label-number col-12 col-md d-flex align-items-center justify-content-center" for="input_{{ question.id }}{{ choice.id }}" id="label_{{ question.id }}{{ choice.id }}">
+            <input class="text-center text-field" type="number" name="input_{{ question.id }}" id="input_{{ question.id }}{{ choice.id }}">
+            {{ choice.text }}
+        </label>
         <br>
 {% endfor %}
 {% elif question.tipo == 'dos respuestas numericas' %}
     {% for choice in question.choices %}
-        <input type="number" name="input_{{ question.id }}" id="input{{ question.id }}{{ choice.id }}">
-        <label for="input{{ question.id }}{{ choice.id }}">{{ choice.text }}</label>
+        <label class="label-number col-12 col-md d-flex align-items-center justify-content-center" for="input_{{ question.id }}{{ choice.id }}" id="label_{{ question.id }}{{ choice.id }}">
+            <input class="text-center text-field" type="number" name="input_{{ question.id }}" id="input_{{ question.id }}{{ choice.id }}">
+            {{ choice.text }}
+        </label>
         <br>
     {% endfor %}
 {% else %}
